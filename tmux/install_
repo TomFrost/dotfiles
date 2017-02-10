@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pkg_install_if_missing tmux
+

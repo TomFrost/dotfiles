@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if is_mac; then
+  if ! bin_is_brewed vim; then pkg_install vim; fi
+else
+  pkg_install_if_missing vim
+fi
+

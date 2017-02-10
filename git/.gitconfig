@@ -1,0 +1,13 @@
+[user]
+	name = TomFrost
+	email = tom@frosteddesign.com
+	signingkey = tom@frosteddesign.com
+[color]
+	ui = auto
+[format]
+	pretty = medium
+[push]
+	default = simple
+[core]
+	excludesfile = ~/.gitignore
+	editor = /usr/local/bin/vim

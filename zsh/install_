@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Install ZSH
+if is_mac; then
+    if ! bin_is_brewed zsh; then pkg_install zsh; fi
+else
+    pkg_install_if_missing zsh
+fi
+
+# Add ZSH to allowed system shells
+path=$(which zsh)
+exists=$(cat /etc/shells | grep "$path")
+if [ "$exists" == "" ]; then
+    echo_info "Adding zsh to system shells"
+    echo $path | sudo tee -a /etc/shells
+    if [ $? -eq 0 ]; then
+        echo_success "Bam, it's in there"
+    else
+        echo_warn "We failed, but let's keep going anyway"
+    fi
+fi
+
+# Change user's shell to ZSH
+if [ "$path" != "$SHELL" ]; then
+    echo_info "Setting $USER's shell to $path"
+    sudo chsh -s $path $USER > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo_success "All set"
+    else
+        echo_warn "We failed. But you can do this manually. I believe in you."
+    fi
+fi
+
