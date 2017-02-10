@@ -66,7 +66,7 @@ Include a file named `install_` at the root of your package, and the install scr
 If you need other files in your package that shouldn't be symlinked under `${HOME}`, the installer will ignore any files ending in `_`. Go nuts.
 
 ## This repo is for me
-I'm always happy to share, but these are my personal configs, and they live and breathe. I'll edit and break them without warning. I won't post compatibility warnings or toil over semantic versioning. I may decide to compeltely rewrite my install script one day. If you like any of these configs, fork the repo so you're in control of them. Use at your own risk.
+I'm always happy to share, but these are my personal configs, and they live and breathe. I'll edit and break them without warning. I won't post compatibility warnings or toil over semantic versioning. I may decide to completely rewrite my install script one day. If you like any of these configs, fork the repo so you're in control of them. Use at your own risk.
 
 ## License
 The contents of this repo are Copyright Tom Shawver under the included ultra-permissive MIT license unless stated otherwise.
