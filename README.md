@@ -18,7 +18,7 @@ Mostly original configs, totally original installer. Compatible with macOS and v
 ### Installing from a single command (if you're me)
 
 ```shell
-sh <(curl -fsSL https://rawgit.com/TomFrost/dotfiles/master/install.sh)
+bash <(curl -fsSL https://rawgit.com/TomFrost/dotfiles/master/install.sh)
 ```
 
 The above command only requires bash, curl, and an OS package manager. If you're on a mac, [brew](http://brew.sh) will be installed automatically if it's not there. This repo will automatically be cloned into `~/.dotfiles`. Want it somewhere else? Set `DOTFILES_DIR=${HOME}/somewhere/else`.
