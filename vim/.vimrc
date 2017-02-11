@@ -18,6 +18,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-sleuth'
+Plug 'christoomey/vim-tmux-navigator'
 "}}}
 
 " Themes {{{
