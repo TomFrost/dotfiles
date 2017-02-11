@@ -4,6 +4,10 @@ if [ -f "${HOME}/.zprofile" ]; then
 fi
 # }}}
 
+# Standard env vars {{{
+PATH=${HOME}/bin:$PATH
+# }}}
+
 # Helpful aliases {{{
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # }}}
