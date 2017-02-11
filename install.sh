@@ -10,7 +10,7 @@ backup_dir=${DOTFILES_BACKUP:-${HOME}/.dotfiles_backup}
 repo_uri=${DOTFILES_REPO:-git@github.com:TomFrost/dotfiles.git}
 
 # Default packages to install, by system
-packages_Darwin=(stow git iterm2 tmux vim zsh)
+packages_Darwin=(stow git iterm2 tmux rtmux vim zsh)
 packages_Linux=(stow git tmux vim zsh)
 
 usage() {
