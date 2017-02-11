@@ -134,7 +134,7 @@ bindkey -v
 # Make keys work more like vim, rather than vi. The first fixes backspace.
 # See: http://superuser.com/questions/476532/how-can-i-make-zshs-vi-mode-behave-more-like-bashs-vi-mode
 bindkey "^?" backward-delete-char
-bindkey "^W" backward-kill-word 
+bindkey "^W" backward-kill-word
 bindkey "^H" backward-delete-char # Control-h also deletes the previous char
 bindkey "^U" backward-kill-line
 # }}}
