@@ -1,6 +1,6 @@
-# Source the .profile if it exists {{{
-if [ -f "${HOME}/.profile" ]; then
-    source ${HOME}/.profile
+# Source the .zprofile if it exists {{{
+if [ -f "${HOME}/.zprofile" ]; then
+    source ${HOME}/.zprofile
 fi
 # }}}
 
