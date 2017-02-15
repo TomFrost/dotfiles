@@ -182,7 +182,6 @@ backup_existing() {
     existing=$(stow -n -d "$dot_dir" -t "$target_dir" --ignore="_" $1 2>&1 | \
         grep "existing target" | sed -e 's/^.*: //g')
     if [ "$existing" != "" ]; then
-        echo ''
         echo_info "Moving existing files to $backup_dir ..."
         for i in "${existing[@]}"; do
             echo_info "Moving $i"
