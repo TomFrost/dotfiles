@@ -25,7 +25,7 @@ EOF
 }
 
 echo_error() {
-    echo -e "\033[0;31m[ :O ] $1 \033[0m"
+    echo -e "\033[0;31m[ :( ] $1 \033[0m"
 }
 
 echo_warn() {
@@ -57,6 +57,29 @@ ask_for_sudo() {
         sleep 59
         kill -0 "$$" || exit
     done &> /dev/null &
+}
+
+# run_safe "command to run" "error message" "success message"
+run_safe() {
+    res=$($1 2>&1)
+    if [ $? -gt 0 ]; then
+        if [ -n "$2" ]; then
+            echo_error "$2"
+        else
+            echo_error "Failed: $1"
+        fi
+        echo
+        cat <<EOF
+$res
+EOF
+        exit 20
+    else
+        if [ -n "$3" ]; then
+            echo_success "$3"
+        else
+            echo_success "Success: $1"
+        fi
+    fi
 }
 
 bin_exists() {
@@ -117,14 +140,7 @@ bootstrap_pkg_manager() {
 pkg_install() {
     cmd="${install_cmd[*]} $1"
     echo_info "Running $cmd ..."
-    res=$($cmd 2>&1)
-    if [ $? -eq 0 ]; then
-        echo_success "Success"
-    else
-        echo_error $res
-        echo_error "Please install '$1' manually and re-run script."
-        exit 2
-    fi
+    run_safe "$cmd" "Please install '$1' manually and re-run script." "Success"
 }
 
 pkg_install_if_missing() {
@@ -144,12 +160,7 @@ ensure_cloned() {
     if ! repo_cloned; then
         pkg_install_if_missing git
         echo_info "Cloning dotfiles repo"
-        res=$(git clone $repo_uri $dot_dir)
-        if [ "$?" -gt 0 ]; then
-            echo_error $res
-            exit 3
-        fi
-        echo_success "Cloned into $dot_dir"
+        run_safe "git clone $repo_uri $dot_dir" "Failed cloning repo" "Cloned into $dot_dir"
     fi
 }
 
