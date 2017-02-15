@@ -22,11 +22,14 @@ if [ ! -d "$ycm_dir" ]; then
   run_safe "git submodule update --init --recursive" \
     "Failed to download submodules" "Submodules installed!"
 
-  # On macOS, compiling with a non-system Python breaks YCM
+  # On macOS, compiling with a non-system Python breaks YCM.
+  # On everything else, just ensure python exists.
   if bin_is_brewed python; then
     echo_warn "YouCompleteMe requires the macOS system version of Python."
     echo_warn "The current python version installed from brew will be unlinked."
     run_safe "brew unlink python"
+  else
+    pkg_install_if_missing python
   fi
 
   # CMake is required to build YCM
