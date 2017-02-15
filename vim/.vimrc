@@ -13,12 +13,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'ervandew/supertab'
 Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-sleuth'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'valloric/youcompleteme'
 "}}}
 
 " Themes {{{
@@ -127,6 +127,12 @@ set smartcase
 nnoremap j gj
 nnoremap k gk
 "}}}
+
+" YouCompleteMe {{{
+" Clear out the documentation preview when we leave insert mode or start typing after an autocompletion.
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" }}}
 
 " Tabs and indents {{{
 filetype plugin indent on

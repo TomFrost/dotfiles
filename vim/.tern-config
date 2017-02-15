@@ -1,0 +1,17 @@
+{
+  "plugins": {
+    "modules": {},
+    "es_modules": {},
+    "node": {},
+    "doc_comment": {
+      "fullDocs": true,
+      "strong": true
+    }
+  },
+  "libs": [
+    "ecma5",
+    "ecma6"
+  ],
+  "ecmaVersion": 6
+}
+

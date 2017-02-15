@@ -1,8 +1,60 @@
 #!/bin/bash
 
+plug_dir="${HOME}/.vim/plugged"
+ycm_dir="${plug_dir}/youcompleteme"
+
 if is_mac; then
   if ! bin_is_brewed vim; then pkg_install vim; fi
 else
   pkg_install_if_missing vim
+fi
+
+# Pre-install YouCompleteMe so we can compile it
+if [ ! -d "$ycm_dir" ]; then
+  echo_info "Downloading YouCompleteMe and its submodules"
+
+  # Make sure the vim plugin dir exists, and clone YCM into it
+  mkdir -p $plug_dir
+  run_safe "git clone https://github.com/Valloric/YouCompleteMe.git $ycm_dir" \
+    "Failed to clone YouCompleteMe" "Cloned successfully!"
+  prev_dir=$(pwd)
+  cd $ycm_dir
+  run_safe "git submodule update --init --recursive" \
+    "Failed to download submodules" "Submodules installed!"
+
+  # On macOS, compiling with a non-system Python breaks YCM
+  if bin_is_brewed python; then
+    echo_warn "YouCompleteMe requires the macOS system version of Python."
+    echo_warn "The current python version installed from brew will be unlinked."
+    run_safe "brew unlink python"
+  fi
+
+  # CMake is required to build YCM
+  pkg_install_if_missing cmake
+  echo_info "Compiling YouCompleteMe"
+
+  # Determine which optional completers can be installed based on what the local machine supports
+  ycm_args=""
+  if bin_exists xbuild; then
+    echo_info ".. with C-languages support"
+    ycm_args="${ycm_args} --clang-completer"
+  fi
+  if bin_exists npm && bin_exists node; then
+    echo_info ".. with Javascript/Node.js support"
+    ycm_args="${ycm_args} --tern-completer"
+  fi
+  if bin_exists go; then
+    echo_info ".. with Go support"
+    ycm_args="${ycm_args} --gocode-completer"
+  fi
+  if bin_exists rust && bin_exists cargo; then
+    echo_info ".. with Rust support"
+    ycm_args="${ycm_args} --racer-completer"
+  fi
+
+  # Build YCM
+  run_safe "./install.py${ycm_args}" "Failed compiling" "Compiled successfully!"
+  cd $prev_dir
+  echo_success "YouCompleteMe installed successfully"
 fi
 
