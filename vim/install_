@@ -1,7 +1,7 @@
 #!/bin/bash
 
 plug_dir="${HOME}/.vim/plugged"
-ycm_dir="${plug_dir}/youcompleteme"
+ycm_dir="${plug_dir}/YouCompleteMe"
 
 if is_mac; then
   if ! bin_is_brewed vim; then pkg_install vim; fi
