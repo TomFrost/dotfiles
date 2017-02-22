@@ -19,6 +19,7 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-sleuth'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'valloric/youcompleteme'
+Plug 'jiangmiao/auto-pairs'
 "}}}
 
 " Themes {{{
