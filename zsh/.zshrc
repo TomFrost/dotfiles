@@ -9,6 +9,7 @@ PATH=${HOME}/bin:$PATH
 # }}}
 
 # Helpful aliases {{{
+alias b=binci
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # }}}
 
@@ -34,6 +35,13 @@ man() {
         _NROFF_U=1 \
         man "$@"
 }
+
+# Docker kill: stop and rm a running process
+dk() {
+    docker stop $1
+    docker rm $1
+}
+
 # }}}
 
 # ZSH options {{{
@@ -155,3 +163,26 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 # }}}
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+if which rvm > /dev/null 2>&1; then
+    export PATH="$PATH:$HOME/.rvm/bin"
+fi
+
+# Add NPX auto-fallback for local npm bin execution
+if which npx > /dev/null 2>&1; then
+    source <(npx --shell-auto-fallback zsh)
+fi
+
+# Fix missing locale env vars, primarily for IntelliJ
+if [ -z "$LANG" ]; then
+  export LC_ALL=en_US.UTF-8  
+  export LANG=en_US.UTF-8
+fi
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
