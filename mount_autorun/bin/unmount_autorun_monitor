@@ -1,7 +1,0 @@
-#!/bin/bash
-#####################
-# To be started as a long-running service. Autoruns any custom unmount script
-# when folders in /Volumes are removed.
-
-fswatch -0d /Volumes | xargs -0 -n 1 -I {} unmount_autorun {}
-
