@@ -123,7 +123,7 @@ bootstrap_pkg_manager() {
         install_cmd=(brew install)
     elif bin_exists apt-get; then
         sudo apt-get update > /dev/null 2>&1
-        install_cmd=(sudo apt-get install)
+        install_cmd=(sudo apt-get install -y)
     elif bin_exists yum; then
         install_cmd=(sudo yum install)
     elif bin_exists pacman; then
