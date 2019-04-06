@@ -30,6 +30,9 @@ if [ ! -d "$ycm_dir" ]; then
     run_safe "brew unlink python"
   else
     pkg_install_if_missing python
+    if ! is_mac; then
+      pkg_install_if_missing python-dev
+    fi
   fi
 
   # CMake is required to build YCM
