@@ -62,6 +62,7 @@ call plug#end()
 set nu
 set ruler
 " Airline
+set encoding=utf-8
 set timeoutlen=200 ttimeoutlen=0 "eliminates delay before input mode is updated
 set laststatus=2 "https://github.com/vim-airline/vim-airline#configuration
 let g:airline_powerline_fonts=1
