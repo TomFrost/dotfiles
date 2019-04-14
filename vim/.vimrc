@@ -99,6 +99,7 @@ set exrc                        " enable per-directory .vimrc files
 set secure                      " disable unsafe commands in local .vimrc files
 set noshowmode                  " Don't show the mode in the last line of the screen, vim-airline takes care of it
 set lazyredraw                  " Don't update the screen while executing macros/commands
+set signcolumn=yes              " Always show the sign column even if there's nothing in it
 " My command line autocomplete is case insensitive. Keep vim consistent with
 " that. It's a recent feature to vim, test to make sure it's supported first.
 if exists("&wildignorecase")
@@ -171,18 +172,18 @@ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expand
 let g:javascript_plugin_jsdoc = 1
 map <Leader>tt :call VimuxRunCommand("clear; npm test")<CR>
 map <Leader>tw :call VimuxRunCommand("clear; npm run test:watch")<CR>
-map <Leader>bt :call VimuxRunCommand("clear; binci test")<CR>
-map <Leader>bw :call VimuxRunCommand("clear; binci test:watch")<CR>
+map <Leader>vt :call VimuxRunCommand("clear; binci test")<CR>
+map <Leader>vw :call VimuxRunCommand("clear; binci test:watch")<CR>
 map <Leader>vq :VimuxCloseRunner<CR>
 map <Leader>vc :VimuxInterruptRunner<CR>
 map <Leader>vi :VimuxInspectRunner<CR>
 map <Leader>vz :call VimuxZoomRunner()<CR>
 "}}}
 
-" Ale {{{
+" ALE {{{
 let g:ale_fixers = {
-      \  'javascript': ['eslint', 'tsserver'],
-      \  'javascript.jsx': ['eslint', 'tsserver']
+      \  'javascript': ['eslint', 'standard'],
+      \  'javascript.jsx': ['eslint', 'standard']
       \}
 let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
@@ -190,6 +191,7 @@ let g:ale_sign_error = '⁉️'
 let g:ale_sign_warning = '⚠️'
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
+nmap <silent> <Leader>b :ALEGoToDefinition<CR>
 "}}}
 
 " Fix pasting indented/commented code from clipboard {{{
