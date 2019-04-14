@@ -15,7 +15,6 @@ Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
-Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-sleuth'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Valloric/YouCompleteMe'
@@ -37,9 +36,9 @@ Plug 'airblade/vim-gitgutter'
 " Javascript {{{
 Plug 'pangloss/vim-javascript'
 Plug 'othree/es.next.syntax.vim'
-Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'mxw/vim-jsx', { 'for': 'jsx' }
 Plug 'benmills/vimux', { 'for': 'javascript' }
+Plug 'w0rp/ale', { 'for': 'javascript' }
 "}}}
 
 " Rust {{{
@@ -168,40 +167,29 @@ hi NonText ctermbg=none
 "}}}
 
 " Javascript {{{
-let g:used_javascript_libs = 'underscore,chai' " Configure javascript-libraries-syntax
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 let g:javascript_plugin_jsdoc = 1
 map <Leader>tt :call VimuxRunCommand("clear; npm test")<CR>
-map <Leader>tm :call VimuxRunCommand("clear; npm run mocha")<CR>
-map <Leader>lt :call VimuxRunCommand("clear; lab test")<CR>
-map <Leader>lm :call VimuxRunCommand("clear; lab mocha")<CR>
+map <Leader>tw :call VimuxRunCommand("clear; npm run test:watch")<CR>
+map <Leader>bt :call VimuxRunCommand("clear; binci test")<CR>
+map <Leader>bw :call VimuxRunCommand("clear; binci test:watch")<CR>
 map <Leader>vq :VimuxCloseRunner<CR>
 map <Leader>vc :VimuxInterruptRunner<CR>
 map <Leader>vi :VimuxInspectRunner<CR>
 map <Leader>vz :call VimuxZoomRunner()<CR>
 "}}}
 
-" Syntastic {{{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['eslint']
-
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
-
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
+" Ale {{{
+let g:ale_fixers = {
+      \  'javascript': ['eslint', 'tsserver'],
+      \  'javascript.jsx': ['eslint', 'tsserver']
+      \}
+let g:ale_fix_on_save = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_sign_error = '⁉️'
+let g:ale_sign_warning = '⚠️'
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
 "}}}
 
 " Fix pasting indented/commented code from clipboard {{{
