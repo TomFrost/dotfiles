@@ -41,6 +41,10 @@ Plug 'benmills/vimux', { 'for': 'javascript' }
 Plug 'w0rp/ale', { 'for': 'javascript' }
 "}}}
 
+" Jinja/Nunjucks {{{
+Plug 'Glench/Vim-Jinja2-Syntax'
+" }}}
+
 " Rust {{{
 Plug 'rust-lang/rust.vim'
 "}}}
