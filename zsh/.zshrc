@@ -170,9 +170,9 @@ if which rvm > /dev/null 2>&1; then
 fi
 
 # Add NPX auto-fallback for local npm bin execution
-if which npx > /dev/null 2>&1; then
-    source <(npx --shell-auto-fallback zsh)
-fi
+#if which npx > /dev/null 2>&1; then
+    #source <(npx --shell-auto-fallback zsh)
+#fi
 
 # Fix missing locale env vars, primarily for IntelliJ
 if [ -z "$LANG" ]; then
