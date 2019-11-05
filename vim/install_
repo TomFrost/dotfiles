@@ -57,9 +57,6 @@ if [ ! -d "$ycm_dir" ]; then
     echo_info ".. with Rust support"
     ycm_args="${ycm_args} --racer-completer"
   fi
-  if bin_exists ruby; then
-    echo_info ".. with Ruby support"
-    ycm_args
 
   # Build YCM
   run_safe "./install.py${ycm_args}" "Failed compiling" "Compiled successfully!"
