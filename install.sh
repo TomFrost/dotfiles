@@ -7,7 +7,7 @@ executable=$0
 dot_dir=${DOTFILES_DIR:-${HOME}/.dotfiles}
 target_dir=${DOTFILES_TARGET:-$HOME}
 backup_dir=${DOTFILES_BACKUP:-${HOME}/.dotfiles_backup}
-repo_uri=${DOTFILES_REPO:-git@github.com:TomFrost/dotfiles.git}
+repo_uri=${DOTFILES_REPO:-https://github.com/TomFrost/dotfiles.git}
 
 # Default packages to install, by system
 packages_Darwin=(stow macos git iterm2 tmux rtmux vim zsh)
