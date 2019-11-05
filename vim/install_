@@ -7,6 +7,11 @@ if is_mac; then
   if ! bin_is_brewed vim; then pkg_install vim; fi
 else
   pkg_install_if_missing vim
+  missing_python=$(vim --version | grep '\-python3')
+  if [ -n "${missing_python}" ]; then
+    # Vim was compiled without script support. Try to install vim-nox instead.
+    pkg_install_if_missing vim-nox
+  fi
 fi
 
 # Pre-install YouCompleteMe so we can compile it
