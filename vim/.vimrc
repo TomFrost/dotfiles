@@ -35,6 +35,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Javascript {{{
 Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
 Plug 'othree/es.next.syntax.vim'
 Plug 'mxw/vim-jsx', { 'for': 'jsx' }
 Plug 'benmills/vimux', { 'for': 'javascript' }

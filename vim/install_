@@ -46,8 +46,8 @@ if [ ! -d "$ycm_dir" ]; then
     ycm_args="${ycm_args} --clang-completer"
   fi
   if bin_exists npm && bin_exists node; then
-    echo_info ".. with Javascript/Node.js support"
-    ycm_args="${ycm_args} --tern-completer"
+    echo_info ".. with Javascript/Node.js/Typescript support"
+    ycm_args="${ycm_args} --ts-completer"
   fi
   if bin_exists go; then
     echo_info ".. with Go support"
@@ -57,6 +57,9 @@ if [ ! -d "$ycm_dir" ]; then
     echo_info ".. with Rust support"
     ycm_args="${ycm_args} --racer-completer"
   fi
+  if bin_exists ruby; then
+    echo_info ".. with Ruby support"
+    ycm_args
 
   # Build YCM
   run_safe "./install.py${ycm_args}" "Failed compiling" "Compiled successfully!"
