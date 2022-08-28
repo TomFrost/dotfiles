@@ -20,5 +20,7 @@ AUTOSSH_PORT=$(awk 'BEGIN { srand(); do r = rand()*32000; while ( r < 20000 ); p
 export AUTOSSH_POLL AUTOSSH_LOGFILE AUTOSSH_DEBUG AUTOSSH_PATH AUTOSSH_GATETIME AUTOSSH_PORT
 
 # -t is the ssh option to force a pseudo terminal (pty)
-autossh -t $@ "tmux attach-session"
+#autossh -t $@ "/usr/local/bin/tmux attach-session"
+#autossh -t $@ "\$(which tmux) attach-session"
+autossh -t $@ "[ -x /usr/local/bin/tmux ] && /usr/local/bin/tmux new -As0 || \$(which tmux) new -As0"
 
