@@ -9,6 +9,14 @@ else
   osascript -e 'tell application "System Preferences" to quit'
 
   ###############################################################################
+  # Peripheral Devices                                                          #
+  ###############################################################################
+
+  # Gamepad: Home/PS button should not open LaunchPad
+  defaults write com.apple.GameController bluetoothPrefsMenuLongPressAction -integer 0
+  defaults write com.apple.GameController bluetoothPrefsShareLongPressSystemGestureMode -integer -1
+
+  ###############################################################################
   # General UI/UX                                                               #
   ###############################################################################
 
